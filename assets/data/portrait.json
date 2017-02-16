@@ -1,0 +1,95 @@
+{"articles":[
+    {
+"type":"people",
+"src":"assets/images/Portrait/1.jpg",
+"href":"#/Photography"
+    },
+    {
+  "type":"people",
+"src":"assets/images/Portrait/2.jpg",
+"href":"#/Photography"
+    },
+      {
+  "type":"people",
+"src":"assets/images/Portrait/3.jpg",
+"href":"#/Photography"
+    },
+      {
+  "type":"people",
+"src":"assets/images/Portrait/4.jpg",
+"href":"#/Photography"
+    },
+        {
+  "type":"people",
+"src":"assets/images/Portrait/5.jpg",
+"href":"#/Photography"
+    },
+            {
+  "type":"people",
+"src":"assets/images/Portrait/6.jpg",
+"href":"#/Photography"
+    },
+      {
+"type":"product",
+"src":"assets/images/product/1.jpg",
+"href":"#/Photography"
+    },
+    {
+  "type":"product",
+"src":"assets/images/product/2.jpg",
+"href":"#/Photography"
+    },
+      {
+  "type":"product",
+"src":"assets/images/product/3.jpg",
+"href":"#/Photography"
+    },
+      {
+  "type":"product",
+"src":"assets/images/product/4.jpg",
+"href":"#/Photography"
+    },
+        {
+  "type":"product",
+"src":"assets/images/product/5.jpg",
+"href":"#/Photography"
+    },
+            {
+  "type":"product",
+"src":"assets/images/product/6.jpg",
+"href":"#/Photography"
+    },
+         {
+"type":"other",
+"src":"assets/images/other/1.jpg",
+"href":"#/Photography"
+    },
+    {
+  "type":"other",
+"src":"assets/images/other/2.jpg",
+"href":"#/Photography"
+    },
+      {
+  "type":"other",
+"src":"assets/images/other/3.jpg",
+"href":"#/Photography"
+    },
+      {
+  "type":"other",
+"src":"assets/images/other/4.jpg",
+"href":"#/Photography"
+    },
+        {
+  "type":"other",
+"src":"assets/images/other/5.jpg",
+"href":"#/Photography"
+    },
+            {
+  "type":"other",
+"src":"assets/images/other/6.jpg",
+"href":"#/Photography"
+    }
+    
+
+]
+}
