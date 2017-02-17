@@ -12,25 +12,85 @@ window.app.page("photographypage", function() // registering the controller
     //   // save contact (contactId) using current $firstName $lastName values
     // ));
 
-	function ajaxLoadDefault() {
+	/* ---------------------------------------------- /*
+		 * Full height module
+		/* ---------------------------------------------- */
+
+	
+ var filtersPG = $('#filters.pg'),
+			worksgridPG = $('#works-grid.pg');
+
+ 				worksgridPG.isotope({
+  					// options...
+  					layoutMode: 'masonry',
+					itemSelector: '.work-item.pg',
+					transitionDuration: '0.3s'
+				});
+
+		$(window).on('resize', function() {
+			console.log("resize PG");
+			worksgridPG.imagesLoaded(function() {
+			console.log("resize PG image loaded");
+				console.log(worksgridPG);
+				worksgridPG.isotope('reloadItems');
+				worksgridPG.isotope();
+			});
+		});
+
+
+	var modulesPG = $('.module-hero, .module, .module-sm, .module-xs, .sidebar');
+
+		var moduleHeroPG = $('.module-hero.pg'),
+			mobileTest;
+
+
+	  function checkFilter(params){
+console.log("enter check filter");
+			  
+if(params=='moreclicked')
+		{
+	console.log(params);
+
+		var filtersHome  = $('#filters.home');
+			var curenDataAtt = $('.current', filtersHome).attr('data-filter');
+console.log(curenDataAtt);
+
+			//if more is clicked than filter the current view with it
+			$('.current', filtersPG).removeClass('current');
+			$(curenDataAtt+'PG').addClass('current');
+			$(curenDataAtt+'PG').click();
+		}
+		else{
+			$('.filters.pg .current').click();
+		}
+$(window).resize();
+console.log("finish check filter");
+
+	};
+
+function ajaxLoadDefault() {
 			$.ajax({
 				type: 'GET',
 				dataType: 'json',
 				url: 'assets/data/portrait.json',
 				success: function(data) {
-					var workGrid = document.getElementsByClassName("works-grid")[0];
-var items = data;
-console.log(items);
-var template = '{{#articles}}<article class="work-item pg {{type}}"> ' +
-'<div class="work-wrapper"><div class="work-thumbnail">'+
-'	<img src="{{src}}" alt=""></div>'+
-'<div class="work-caption">'+
-'<h3 class="work-title font-alt">{{type}}</h3>'+
-'</div></div></article>{{/articles}}'
+					//var workGrid = document.getElementsByClassName("works-grid")[0];
+				var items = data;
+				console.log(items);
+				var template = '{{#articles}}<article class="work-item pg {{type}}"> ' +
+				'<div class="work-wrapper"><div class="work-thumbnail">'+
+				'	<img src="{{src}}" alt=""></div>'+
+				'<div class="work-caption">'+
+				'<h3 class="work-title font-alt">{{type}}</h3>'+
+				'</div></div></article>{{/articles}}'
 
-var html = Mustache.to_html(template, items);
-$('#works-grid.pg').html(html);
-$(window).resize();
+				var html = Mustache.to_html(template, items);
+				$('#works-grid.pg').html(html);
+				console.log("before check filter");
+				
+				console.log("after check filter");
+
+				$(window).resize();
 				},
 
 				error: function (jqXHR, textStatus, errorThrown) {
@@ -43,52 +103,12 @@ $(window).resize();
 
 				}
 			});
-		}
-		ajaxLoadDefault();
+		};
 
-    // presenter of the view - load data and show: 
-    // this function is "page activated" code - it gets called each time the page gets presented 
-    return function(params) {
+ajaxLoadDefault();
 	
 
-      $(document).ready(function() {
-      	var moduleHeroPG = $('.module-hero.pg'),
-			mobileTest;
-
-		/* ---------------------------------------------- /*
-		 * Mobile detect
-		/* ---------------------------------------------- */
-
-		if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-			mobileTest = true;
-		} else {
-			mobileTest = false;
-		}
-
-	var modulesPG = $('.module-hero, .module, .module-sm, .module-xs, .sidebar');
-
-		modulesPG.each(function() {
-			if ($(this).attr('data-background')) {
-				$(this).css('background-image', 'url(' + $(this).attr('data-background') + ')');
-			}
-		});
-
-    var filtersPG = $('#filters.pg'),
-			worksgridPG = $('#works-grid.pg');
-	console.log(params);
-	if(params=='moreclicked')
-		{
-	console.log(params);
-
-		var filtersHome  = $('#filters.home');
-			var curenDataAtt = $('.current', filtersHome).attr('data-filter');
-console.log(curenDataAtt);
-
-			//if more is clicked than filter the current view with it
-			$('.current', filtersPG).removeClass('current');
-			$(curenDataAtt+'PG').addClass('current');
-		}
-
+	
 		$('a', filtersPG).on('click', function() {
 			var selector = $(this).attr('data-filter');
 			$('.current', filtersPG).removeClass('current');
@@ -98,32 +118,7 @@ console.log(curenDataAtt);
 			});
 			return false;
 		});
-	/* ---------------------------------------------- /*
-		 * Full height module
-		/* ---------------------------------------------- */
 
-	
-
-		$(window).on('resize', function() {
-			worksgridPG.imagesLoaded(function() {
-				worksgridPG.isotope({
-					layoutMode: 'masonry',
-					itemSelector: '.work-item',
-					transitionDuration: '0.3s'
-
-				});
-			});
-		}).resize();
-
-		/* ---------------------------------------------- /*
-		 * Parallax
-		/* ---------------------------------------------- */
-
-		if (mobileTest === true) {
-			modulesPG.css({'background-attachment': 'scroll'});
-		}
-
-	
 
 
 /* ---------------------------------------------- /*
@@ -174,23 +169,49 @@ console.log(curenDataAtt);
 
 			$.ajax({
 				type: 'GET',
-				data: dataString,
-				dataType: 'html',
-				url: 'assets/php/ajax-load-more.html',
+				dataType: 'json',
+				url: 'assets/data/morepic.json',
 				success: function(data) {
-					var $data = $(data);
-					var start_index = (pageNumber - 1) * workNumberToload;
-					var end_index = + start_index + workNumberToload;
+						var moreItems = data;
+				
+				var template = '{{#articles}}<article class="work-item pg work-itempg {{type}}"> ' +
+				'<div class="work-wrapper"><div class="work-thumbnail">'+
+				'	<img src="{{src}}" alt=""></div>'+
+				'<div class="work-caption">'+
+				'<h3 class="work-title font-alt">{{type}}</h3>'+
+				'</div></div></article>{{/articles}}'
+			
+				var moreHtml = Mustache.to_html(template, moreItems);
+		var $moreHtml = $(moreHtml);
 
-					if ($data.find('.work-item').slice(start_index).length) {
-						var work = $data.find('.work-item').slice(start_index, end_index);
+					// var selectorFilter = $('.current', filtersPG).attr('data-filter');
+					// console.log(selectorFilter);
+					
+					var findClass=".work-itempg";
+				// if(selectorFilter != "*"){
+				// findClass += selectorFilter;
+				// }
+					// var $data = $(data);
+					// var start_index = (pageNumber - 1) * workNumberToload;
+					// var end_index = + start_index + workNumberToload;
+					var $jmoreHtml= $("<div class='morewarapper'> </div>");
+					 $jmoreHtml.append($moreHtml);
 
+					console.log($jmoreHtml);
+					console.log($jmoreHtml.find(".work-itempg"));
+
+					if ($jmoreHtml.find(findClass)) {
+						var work =$jmoreHtml.find(findClass);
+						
+						console.log(work);
+						
 						worksgridPG.append(work).isotope('appended', work).resize();
 
 						setTimeout(function() {
 							$loadButtonpg.text(loadText);
 						}, 300);
-					} else {
+					} 
+					
 						setTimeout(function() {
 							$loadButtonpg.text(doneText);
 						}, 300);
@@ -200,7 +221,7 @@ console.log(curenDataAtt);
 								opacity: 0,
 							}).css('display', 'none');
 						}, 1500);
-					}
+					
 				},
 
 				error: function (jqXHR, textStatus, errorThrown) {
@@ -213,10 +234,46 @@ console.log(curenDataAtt);
 
 				}
 			});
+		};
+
+    // presenter of the view - load data and show: 
+    // this function is "page activated" code - it gets called each time the page gets presented 
+    return function(params) {
+
+      $(document).ready(function() {
+
+		checkFilter(params);
+      
+
+		/* ---------------------------------------------- /*
+		 * Mobile detect
+		/* ---------------------------------------------- */
+
+		if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+			mobileTest = true;
+		} else {
+			mobileTest = false;
 		}
 
 
-  });
+		modulesPG.each(function() {
+			if ($(this).attr('data-background')) {
+				$(this).css('background-image', 'url(' + $(this).attr('data-background') + ')');
+			}
+		});
+
+   
+	console.log(params);
+
+		/* ---------------------------------------------- /*
+		 * Parallax
+		/* ---------------------------------------------- */
+
+		if (mobileTest === true) {
+			modulesPG.css({'background-attachment': 'scroll'});
+		}
+
+
       // contactId = params; // setting current contactId 
       // var contact = contacts[contactId];
       // // show values 
@@ -229,5 +286,9 @@ console.log(curenDataAtt);
 		$('.page-loader').delay(350).fadeOut('slow');
 
 
-    }
-  }); 
+    })
+	   }
+	
+  });
+   
+  

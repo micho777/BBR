@@ -212,8 +212,8 @@
 		/* ---------------------------------------------- /*
 		 * Google Map
 		/* ---------------------------------------------- */
-
-		var mapID = $('#map');
+function initMap(){
+	var mapID = $('#map');
 		var isDraggable = Math.max($(window).width(), window.innerWidth) > 480 ? true : false;
 
 		mapID.each(function() {
@@ -246,6 +246,8 @@
 			});
 
 		});
+};
+	
 
 		/* ---------------------------------------------- /*
 		 * Scroll Animation
