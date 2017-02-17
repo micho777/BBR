@@ -54,7 +54,6 @@ var worksgridHome = $('#works-grid.home');
 	$('a', sliderContainer).on('click', function() {
 			var selector = $(this).attr('data-filter');
 			$('.current', filtersHome).removeClass('current');
-			console.log(selector);
 			$(selector+'Home').addClass('current');
 			worksgridHome.isotope({
 				filter: selector
@@ -68,7 +67,6 @@ var worksgridHome = $('#works-grid.home');
 		 * Scroll Animation
 		/* ---------------------------------------------- */
 		$('#moreHomeClicked').on('click',function(){
-			console.log(curenDataAtt);
 window.app("photographypage", curenDataAtt)
 
 		});
@@ -82,11 +80,8 @@ window.app("photographypage", curenDataAtt)
 				});
 
 		$(window).on('resize', function() {
-			console.log("resize func");
 			worksgridHome.imagesLoaded(function() {
 				
-				 console.log("images loaded");
-			 console.log(worksgridHome);
 				worksgridHome.isotope('reloadItems');
 				worksgridHome.isotope();
 				$('.filters.home .current').click();
@@ -102,7 +97,6 @@ window.app("photographypage", curenDataAtt)
 				success: function(data) {
 					// var workGrid = document.getElementsByClassName("works-grid")[0];
 				var items = data;
-				console.log(items);
 				var template = '{{#articles}}<article class="work-item home {{type}}"> ' +
 				'<div class="work-wrapper"><div class="work-thumbnail">'+
 				'	<img src="{{src}}" alt=""></div>'+
@@ -126,7 +120,6 @@ window.app("photographypage", curenDataAtt)
 
 				}
 			});
-// console.log("images loaded successfully");
 			
 		};
 		ajaxLoadDefault();
@@ -156,17 +149,9 @@ window.app("photographypage", curenDataAtt)
 			inherit_width_from:".module-hero.home"
 		});
 		
-		
-		console.log("page ready");
-	
-console.log("finish page loaded");
-	
-
-
     // presenter of the view - load data and show: 
     // this function is "page activated" code - it gets called each time the page gets presented 
     return function(params) {
-console.log("page activation code");
 		
       // contactId = params; // setting current contactId 
       // var contact = contacts[contactId];
@@ -203,8 +188,6 @@ $('#slides').superslides('start')
 
 		// 	$(window).on('resize', function() {
 		// 	worksgridHome.imagesLoaded(function() {
-		// 		// console.log("images loaded");
-		// 		// console.log(worksgridHome);
 		// 		worksgridHome.isotope({
 		// 			layoutMode: 'masonry',
 		// 			itemSelector: '.work-item',

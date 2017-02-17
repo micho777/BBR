@@ -1,7 +1,7 @@
 <?php
 
 	// Mail settings
-	$to      = "bashir.bouraffoul@gmail.com";
+	$to      = "contact@bashirbouraffoul.com";
 	$subject = "Contact From Website";
 
 	// You can put here your email

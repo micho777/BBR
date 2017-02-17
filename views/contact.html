@@ -33,23 +33,25 @@
 
 					<div class="col-sm-8">
 
-						<form id="contact-form" role="form" novalidate>
+						<form id="contact-form" role="form" >
 							<div class="form-group">
 								<label class="sr-only" for="cname">Name</label>
-								<input type="text" id="name" class="form-control" name="cname" placeholder="Name*" required="" data-validation-required-message="Please enter your name.">
+								<input type="text" id="name" class="form-control" name="cname" placeholder="Name*" required 
+								data-validation-required-message="Please enter your name.">
 								<p class="help-block text-danger"></p>
 							</div>
 							<div class="form-group">
 								<label class="sr-only" for="cemail">Your Email</label>
-								<input type="email" id="email" name="cemail" class="form-control" placeholder="Your E-mail*" required="" data-validation-required-message="Please enter your email address.">
+								<input type="email" id="email" name="cemail" class="form-control" placeholder="Your E-mail*" required  data-validation-required-message="Please enter your email address.">
 								<p class="help-block text-danger"></p>
 							</div>
 							<div class="form-group">
-								<textarea class="form-control" id="message" name="cmessage" rows="7" placeholder="Message*" required="" data-validation-required-message="Please enter your message."></textarea>
+								<textarea class="form-control" id="message" name="cmessage" rows="7" placeholder="Message*" required  data-validation-required-message="Please enter your message."></textarea>
 								<p class="help-block text-danger"></p>
 							</div>
 							<div class="text-center">
-								<button type="submit" class="btn btn-block btn-round btn-dark">Submit</button>
+								<input type="submit" id="sendBtn" name="send" value="Submit" class="btn btn-block btn-round btn-dark" />
+								<!--<button type="submit" id="sendBtn" value="Submit" class="btn btn-block btn-round btn-dark" value="Submit">Submit</button>-->
 							</div>
 						</form>
 
@@ -68,7 +70,7 @@
 								<h4 class="iconbox-title font-alt">Say Hello</h4>
 							</div>
 							<div class="iconbox-content">
-								<p>Email: bashir.bouraffoul@gmail.com<br>Phone: +961 03 176 355</p>
+								<p>Email: contact@bashirbouraffoul.com<br>Phone: +961 3 176 355</p>
 							</div>
 						</div>
 
@@ -80,7 +82,9 @@
 								<h4 class="iconbox-title font-alt">Where to meet</h4>
 							</div>
 							<div class="iconbox-content">
-								<p>Beirut<br>Lebanon</p>
+								<p>Underground, Assli bldg 1881,
+							    <br>Horb Tabet, Sin el Fil, Camil Chamoun str.
+								<br>Lebanon</p>
 							</div>
 						</div>
 
@@ -95,7 +99,7 @@
 		<!-- GOOGLE MAP -->
 		<section class="module-map">
 			<!-- ADD YOUR ADDRESS HERE -->
-			<div id="map" data-address="33.873821, 35.535736"></div>
+			<div id="map" data-address="33.874150, 35.535506"></div>
 		</section>
 		<!-- /GOOGLE MAP -->
 		
@@ -109,12 +113,11 @@
 			<div class="row">
 					<div class="col-sm-12">
 						<ul class="contact-info font-alt">
-							<li><a href="mailto:bashir.bouraffoul@gmail.com">bashir.bouraffoul@gmail.com</a></li>
-							<li><a>+(961) 03 176 355</a></li>
-							<li><a>Beirut , Lebanon</a><</li>
+							<li><a href="mailto:contact@bashirbouraffoul.com">contact@bashirbouraffoul.com</a></li>
+							<li><a>+(961) 3 176 355</a></li>
 						</ul>
 						<div class="copyright text-center font-alt">
-							© 2017 <a href="mailto:bashir.bouraffoul@gmail.com">Bashir Bou Raffoul</a>
+							© 2017 <a href="mailto:contact@bashirbouraffoul.com">Bashir Bou Raffoul</a>
 						</div>
 					</div>
 				</div>
@@ -130,5 +133,7 @@
 		<!-- /FOOTER -->
 
 	</div>
-			<script src="js/contactCtrl.js"></script>
+	<script src="js/contactCtrl.js"></script>
 	<script src="assets/js/contact.js"></script>
+	<script  src="http://maps.google.com/maps/api/js?key=AIzaSyA2r4YuHSZPtQsO3MP7zyIAxH564seR1dE&callback=initMap" async defer></script>
+

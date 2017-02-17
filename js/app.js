@@ -3,7 +3,6 @@ var bbrmodule = angular.module("bbr", ["ngRoute"])
 // configure our routes]
 bbrmodule.config(
     function ($routeProvider) {
-        console.log($routeProvider);
         $routeProvider.when('/',
             {
                 templateUrl: 'views/home.html',

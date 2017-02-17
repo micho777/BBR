@@ -1535,6 +1535,10 @@ blockquote cite{
 	width:33.3333%;
 }
 
+.work-grid-2 .work-item{
+	width:50%;
+}
+
 .works-grid-gutter .work-item{
 	padding:8px 8px;
 }
@@ -1669,6 +1673,10 @@ blockquote cite{
 	.work-item, .works-grid-3 .work-item{
 		width:100%;
 	}
+	
+	.work-grid-2.works-grid-gutter.gd .work-item{
+	width:100%;
+}
 
 }
 /*!------------------------------------------------------------------
@@ -1842,3 +1850,10 @@ body.graphicdesignpage .navbar-custom li > a#goToPhotography {  color:#f6bf13; }
 	text-align: center;
 }
 
+#goToPhotography:hover{
+ cursor: pointer;
+}
+
+ .portofoliogd.module-sm{
+	padding-top:0px !important;
+}

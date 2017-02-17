@@ -28,10 +28,7 @@ window.app.page("photographypage", function() // registering the controller
 				});
 
 		$(window).on('resize', function() {
-			console.log("resize PG");
 			worksgridPG.imagesLoaded(function() {
-			console.log("resize PG image loaded");
-				console.log(worksgridPG);
 				worksgridPG.isotope('reloadItems');
 				worksgridPG.isotope();
 			});
@@ -45,15 +42,11 @@ window.app.page("photographypage", function() // registering the controller
 
 
 	  function checkFilter(params){
-console.log("enter check filter");
-			  
 if(params=='moreclicked')
 		{
-	console.log(params);
 
 		var filtersHome  = $('#filters.home');
 			var curenDataAtt = $('.current', filtersHome).attr('data-filter');
-console.log(curenDataAtt);
 
 			//if more is clicked than filter the current view with it
 			$('.current', filtersPG).removeClass('current');
@@ -64,7 +57,6 @@ console.log(curenDataAtt);
 			$('.filters.pg .current').click();
 		}
 $(window).resize();
-console.log("finish check filter");
 
 	};
 
@@ -76,7 +68,6 @@ function ajaxLoadDefault() {
 				success: function(data) {
 					//var workGrid = document.getElementsByClassName("works-grid")[0];
 				var items = data;
-				console.log(items);
 				var template = '{{#articles}}<article class="work-item pg {{type}}"> ' +
 				'<div class="work-wrapper"><div class="work-thumbnail">'+
 				'	<img src="{{src}}" alt=""></div>'+
@@ -86,15 +77,10 @@ function ajaxLoadDefault() {
 
 				var html = Mustache.to_html(template, items);
 				$('#works-grid.pg').html(html);
-				console.log("before check filter");
-				
-				console.log("after check filter");
-
 				$(window).resize();
 				},
 
 				error: function (jqXHR, textStatus, errorThrown) {
-					console.log(jqXHR + " :: " + textStatus + " :: " + errorThrown);
 
 					setTimeout(function() {
 						$loadButtonpg.removeClass('ss-loading');
@@ -185,7 +171,6 @@ ajaxLoadDefault();
 		var $moreHtml = $(moreHtml);
 
 					// var selectorFilter = $('.current', filtersPG).attr('data-filter');
-					// console.log(selectorFilter);
 					
 					var findClass=".work-itempg";
 				// if(selectorFilter != "*"){
@@ -197,13 +182,10 @@ ajaxLoadDefault();
 					var $jmoreHtml= $("<div class='morewarapper'> </div>");
 					 $jmoreHtml.append($moreHtml);
 
-					console.log($jmoreHtml);
-					console.log($jmoreHtml.find(".work-itempg"));
 
 					if ($jmoreHtml.find(findClass)) {
 						var work =$jmoreHtml.find(findClass);
 						
-						console.log(work);
 						
 						worksgridPG.append(work).isotope('appended', work).resize();
 
@@ -263,8 +245,6 @@ ajaxLoadDefault();
 		});
 
    
-	console.log(params);
-
 		/* ---------------------------------------------- /*
 		 * Parallax
 		/* ---------------------------------------------- */

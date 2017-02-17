@@ -230,9 +230,7 @@ bbrmodule.controller('homeController', function ($scope,$http) {
 loadCommon();
 
 var mainInfo = $http.get('assets/data/portrait.json').success(function(response) {
-        console.log(response);
 		$scope.articles = response.portraits;
-		console.log($scope.articles);
 		var worksgrid = $('#works-grid');
 			worksgrid.isotope({
 					layoutMode: 'masonry',

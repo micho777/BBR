@@ -12,16 +12,91 @@ window.app.page("graphicdesignpage", function() // registering the controller
     //   // save contact (contactId) using current $firstName $lastName values
     // ));
 
+	/* ---------------------------------------------- /*
+		 * Full height module
+		/* ---------------------------------------------- */
+
+	
+ var filtersGD = $('#filters.gd'),
+			worksgridGD = $('#works-grid.gd');
+
+ 				worksgridGD.isotope({
+  					// options...
+  					layoutMode: 'masonry',
+					itemSelector: '.work-item.gd',
+					transitionDuration: '0.3s'
+				});
+
+		$(window).on('resize', function() {
+			worksgridGD.imagesLoaded(function() {
+				worksgridGD.isotope('reloadItems');
+				worksgridGD.isotope();
+			});
+		});
+
+
+	var modulesGD = $('.module-hero, .module, .module-sm, .module-xs, .sidebar');
+
+		var moduleHeroGD = $('.module-hero.gd'),
+			mobileTest;
+
+
+
+function ajaxLoadDefault() {
+			$.ajax({
+				type: 'GET',
+				dataType: 'json',
+				url: 'assets/data/graphicdesign.json',
+				success: function(data) {
+					//var workGrid = document.getElementsByClassName("works-grid")[0];
+				var items = data;
+				var template = '{{#articles}}<article class="work-item gd {{type}}"> ' +
+				'<div class="work-wrapper"><div class="work-thumbnail">'+
+				'	<img src="{{src}}" alt=""></div>'+
+				'<div class="work-caption">'+
+				'<h3 class="work-title font-alt">{{type}}</h3>'+
+				'</div></div></article>{{/articles}}'
+
+				var html = Mustache.to_html(template, items);
+				$('#works-grid.gd').html(html);
+
+				$(window).resize();
+				},
+
+				error: function (jqXHR, textStatus, errorThrown) {
+
+					setTimeout(function() {
+						$loadButtongd.removeClass('ss-loading');
+						$loadButtongd.text(errorText);
+					}, 300);
+
+				}
+			});
+		};
+
+ajaxLoadDefault();
+	
+
+
+/* ---------------------------------------------- /*
+		 * Scroll Animation
+		/* ---------------------------------------------- */
+
+		$('.anim-scroll.gd').on('click', function(e) {
+			var target = this.hash;
+			var $target = $(target);
+			$('html, body').stop().animate({
+				'scrollTop': $target.offset().top
+			}, 900, 'swing');
+			e.preventDefault();
+		});
+
+
     // presenter of the view - load data and show: 
     // this function is "page activated" code - it gets called each time the page gets presented 
-    return function(params) {
-      
+    return function() {
 
-
-
-	$(document).ready(function() {
-      	var moduleHeroPG = $('.module-hero.pg'),
-			mobileTest;
+      $(document).ready(function() {
 
 		/* ---------------------------------------------- /*
 		 * Mobile detect
@@ -33,136 +108,22 @@ window.app.page("graphicdesignpage", function() // registering the controller
 			mobileTest = false;
 		}
 
-	var modulesPG = $('.module-hero, .module, .module-sm, .module-xs, .sidebar');
 
-		modulesPG.each(function() {
+		modulesGD.each(function() {
 			if ($(this).attr('data-background')) {
 				$(this).css('background-image', 'url(' + $(this).attr('data-background') + ')');
 			}
 		});
 
-    var filtersPG = $('#filters.pg'),
-			worksgridPG = $('#works-grid.pg');
-
-		$('a', filtersPG).on('click', function() {
-			var selector = $(this).attr('data-filter');
-			$('.current', filtersPG).removeClass('current');
-			$(this).addClass('current');
-			worksgridPG.isotope({
-				filter: selector
-			});
-			return false;
-		});
-
-	
+   
 
 		/* ---------------------------------------------- /*
 		 * Parallax
 		/* ---------------------------------------------- */
 
 		if (mobileTest === true) {
-			modulesPG.css({'background-attachment': 'scroll'});
+			modulesGD.css({'background-attachment': 'scroll'});
 		}
-
-		/* ---------------------------------------------- /*
-		 * Full height module
-		/* ---------------------------------------------- */
-
-	
-
-
-
-/* ---------------------------------------------- /*
-		 * Scroll Animation
-		/* ---------------------------------------------- */
-
-		$('.anim-scroll.pg').on('click', function(e) {
-			var target = this.hash;
-			var $target = $(target);
-			$('html, body').stop().animate({
-				'scrollTop': $target.offset().top
-			}, 900, 'swing');
-			e.preventDefault();
-		});
-
-		/* ---------------------------------------------- /*
-		 * Ajax options
-		/* ---------------------------------------------- */
-
-		var pageNumber = 0,
-			workNumberToload = 5;
-
-		var doneText    = 'Done',
-			loadText    = 'More works',
-			loadingText = 'Loading...',
-			errorText   = 'Error! Check the console for more information.';
-
-		/* ---------------------------------------------- /*
-		 * Ajax portfolio
-		/* ---------------------------------------------- */
-
-		$('#show-more.pg').on('click', function() {
-			$(this).text(loadingText);
-
-			setTimeout(function() {
-				ajaxLoad(workNumberToload, pageNumber);
-			}, 300);
-
-			pageNumber++;
-
-			return false;
-		});
-
-		function ajaxLoad(workNumberToload, pageNumber) {
-			var $loadButtonpg = $('#show-more.pg');
-			var dataString = 'numPosts=' + workNumberToload + '&pageNumber=' + pageNumber;
-
-			$.ajax({
-				type: 'GET',
-				data: dataString,
-				dataType: 'html',
-				url: 'assets/php/ajax-load-more.html',
-				success: function(data) {
-					var $data = $(data);
-					var start_index = (pageNumber - 1) * workNumberToload;
-					var end_index = + start_index + workNumberToload;
-
-					if ($data.find('.work-item').slice(start_index).length) {
-						var work = $data.find('.work-item').slice(start_index, end_index);
-
-						worksgridPG.append(work).isotope('appended', work).resize();
-
-						setTimeout(function() {
-							$loadButtonpg.text(loadText);
-						}, 300);
-					} else {
-						setTimeout(function() {
-							$loadButtonpg.text(doneText);
-						}, 300);
-
-						setTimeout(function () {
-							$('#show-more.pg').animate({
-								opacity: 0,
-							}).css('display', 'none');
-						}, 1500);
-					}
-				},
-
-				error: function (jqXHR, textStatus, errorThrown) {
-					console.log(jqXHR + " :: " + textStatus + " :: " + errorThrown);
-
-					setTimeout(function() {
-						$loadButtonpg.removeClass('ss-loading');
-						$loadButtonpg.text(errorText);
-					}, 300);
-
-				}
-			});
-		}
-
-
-  });
-
 
 
       // contactId = params; // setting current contactId 
@@ -177,5 +138,9 @@ window.app.page("graphicdesignpage", function() // registering the controller
 		$('.page-loader').delay(350).fadeOut('slow');
 
 
-    }
-  }); 
+    })
+	   }
+	
+  });
+   
+  

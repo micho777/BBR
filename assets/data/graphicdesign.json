@@ -1,0 +1,43 @@
+{"articles":[
+    {
+"type":"graphicdesign",
+"src":"assets/images/graphicdesign/1.jpg",
+"href":"#/Photography"
+    },
+    {
+  "type":"graphicdesign",
+"src":"assets/images/graphicdesign/2.jpg",
+"href":"#/Photography"
+    },
+      {
+  "type":"graphicdesign",
+"src":"assets/images/graphicdesign/3.jpg",
+"href":"#/Photography"
+    },
+      {
+  "type":"graphicdesign",
+"src":"assets/images/graphicdesign/7.jpg",
+"href":"#/Photography"
+    },
+        {
+  "type":"graphicdesign",
+"src":"assets/images/graphicdesign/5.jpg",
+"href":"#/Photography"
+    },
+            {
+  "type":"graphicdesign",
+"src":"assets/images/graphicdesign/6.jpg",
+"href":"#/Photography"
+    },
+      {
+"type":"graphicdesign",
+"src":"assets/images/graphicdesign/4.jpg",
+"href":"#/Photography"
+    },
+    {
+  "type":"graphicdesign",
+"src":"assets/images/graphicdesign/8.jpg",
+"href":"#/Photography"
+    }
+]
+}
