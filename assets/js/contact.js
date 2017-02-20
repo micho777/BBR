@@ -15,6 +15,7 @@
 		$("input#name").val("");
 		$("input#email").val("");
 		$("textarea#message").val("");
+		$("input#number").val("");
         sendButton.prop('disabled',false);
         sendButton.val('Submit');
 
@@ -48,8 +49,9 @@ function send() {
 		 		var cname   = $("input#name").val();
 		 		var cemail  = $("input#email").val();
 				var cmessage = $("textarea#message").val();
-		
-		 	 sendData.subject = "contact from: " + cname + " " +cemail;
+				var cnumber = $("input#number").val();
+
+		 	 sendData.subject = "contact from: " + cname + " " +cemail + " ("+  cnumber + ")";
       	 	 sendData.text = cmessage;
 
 					submit.empty();

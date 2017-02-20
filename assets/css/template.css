@@ -118,6 +118,13 @@ a:hover, a:focus{
 	color:rgba(17, 17, 17, 0.8);
 }
 
+ a.fa.fa-instagram.instagram:focus,
+ a.fa.fa-facebook.facebook:focus{
+	color:rgba(255, 255, 255, 0.7);
+}
+
+
+
 h1, h2, h3, h4, h5, h6{
 	font-family:'Roboto Condensed', sans-serif;
 	text-transform:uppercase;
