@@ -19,7 +19,7 @@
         sendButton.prop('disabled',false);
         sendButton.val('Submit');
 
-		alert("Email Successfully sent.");
+		alert("Thank you for your e-mail. You will be contacted shortly.");
 		// window.location = window.location.pathname + "?message=Email+Successfully+Sent%21&isError=0";
     }
 
@@ -37,7 +37,7 @@
 function send() {
 	//validate input
 	if((!$('#contact-form')[0].checkValidity())){
-		Alert("Please fill all inputs with valid data");
+		alert("Please fill all inputs with valid data");
 		return false;
 	}	
 	console.log(sendButton);
@@ -75,6 +75,17 @@ function send() {
 		/* ---------------------------------------------- /*
 		 * Contact form ajax
 		/* ---------------------------------------------- */
+		$('#contact-form').find('input,textarea').jqBootstrapValidation({
+		preventSubmit: true,
+ 	submitError: function($form, event, errors) {
+		alert("Please fill all required fields.");
+		 	},
+	submitSuccess: function($form, event) {
+			event.preventDefault();
+			send();
+			}
+
+		});
 
 		// $('#contact-form').find('input,textarea').jqBootstrapValidation({
 		// 	preventSubmit: true,

@@ -136,7 +136,7 @@ if(google != undefined){
       // ...
       window.scrollTo(0,0);
 		$('.page-loader.contact').show();
-		$('.page-loader.contact').delay(350).fadeOut('slow');
+		$('.page-loader.contact').delay(2500).fadeOut('slow');
 
 
 

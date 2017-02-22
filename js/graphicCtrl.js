@@ -135,7 +135,7 @@ ajaxLoadDefault();
       window.scrollTo(0,0);
 		$('.page-loader').show();
       
-		$('.page-loader').delay(350).fadeOut('slow');
+		$('.page-loader').delay(2000).fadeOut('slow');
 
 
     })
