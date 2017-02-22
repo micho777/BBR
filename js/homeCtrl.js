@@ -13,6 +13,7 @@ window.app.page("homepage", function() // registering the controller
     // ));
 
 
+	$('.page-loader.home').show();
 
 var filtersHome = $('#filters.home'),
 			sliderContainer = $('#sliderContainerHome');
@@ -71,7 +72,14 @@ window.app("photographypage", curenDataAtt)
 
 		});
 
-	
+	$(document).ready( function(){  
+		// All images, css style sheets and external resources are loaded!
+	$('.page-loader.home').delay(3000).fadeOut('slow');
+    console.log("wind load");
+
+ });
+
+
 			
 		worksgridHome.isotope({
 					layoutMode: 'masonry',
@@ -81,7 +89,7 @@ window.app("photographypage", curenDataAtt)
 
 		$(window).on('resize', function() {
 			worksgridHome.imagesLoaded(function() {
-				
+				console.log("images loaded");
 				worksgridHome.isotope('reloadItems');
 				worksgridHome.isotope();
 				$('.filters.home .current').click();
@@ -160,9 +168,8 @@ window.app("photographypage", curenDataAtt)
       // $lastName.val(contact.lastName);
       // ...
       window.scrollTo(0,0);
-		$('.page-loader').show();
+	
       
-		$('.page-loader').delay(350).fadeOut('slow');
 
 
 //from Custom

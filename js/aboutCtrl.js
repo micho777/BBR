@@ -28,7 +28,7 @@ window.app.page("aboutmepage", function() // registering the controller
 
 		$('.page-loader.about').show();
       
-		$('.page-loader.about').delay(350).fadeOut('slow');
+		$('.page-loader.about').delay(2000).fadeOut('slow');
 
 
 $(document).ready(function() {

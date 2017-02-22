@@ -3,7 +3,7 @@
 var loadCommon = function(){
 	
     //         $(window).load(function() {
- 	$('.page-loader').delay(350).fadeOut('slow');
+ 	$('.page-loader').delay(3000).fadeOut('slow');
 	// });
     	var moduleHero = $('.module-hero, .module-map'),
 			mobileTest;
