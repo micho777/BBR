@@ -1,5 +1,6 @@
 window.app.page("photographypage", function() // registering the controller
   {
+		$('.page-loader').show();	  
     // initialize view variables in localscope
     // this is "page ready" code - happens once per app life time.
 
@@ -31,6 +32,9 @@ window.app.page("photographypage", function() // registering the controller
 			worksgridPG.imagesLoaded(function() {
 				worksgridPG.isotope('reloadItems');
 				worksgridPG.isotope();
+
+		$('.page-loader').delay(1000).fadeOut('slow');
+				
 			});
 		});
 
@@ -70,7 +74,7 @@ function ajaxLoadDefault() {
 				var items = data;
 				var template = '{{#articles}}<article class="work-item pg {{type}}"> ' +
 				'<div class="work-wrapper"><div class="work-thumbnail">'+
-				'	<img src="{{src}}" alt=""></div>'+
+				'	<img src="{{src}}" alt="image"></div>'+
 				'<div class="work-caption">'+
 				'<h3 class="work-title font-alt">{{type}}</h3>'+
 				'</div></div></article>{{/articles}}'
@@ -162,7 +166,7 @@ ajaxLoadDefault();
 				
 				var template = '{{#articles}}<article class="work-item pg work-itempg {{type}}"> ' +
 				'<div class="work-wrapper"><div class="work-thumbnail">'+
-				'	<img src="{{src}}" alt=""></div>'+
+				'	<img src="{{src}}" alt="image"></div>'+
 				'<div class="work-caption">'+
 				'<h3 class="work-title font-alt">{{type}}</h3>'+
 				'</div></div></article>{{/articles}}'
@@ -261,9 +265,7 @@ ajaxLoadDefault();
       // $lastName.val(contact.lastName);
       // ...
       window.scrollTo(0,0);
-		$('.page-loader').show();
       
-		$('.page-loader').delay(2000).fadeOut('slow');
 
 
     })

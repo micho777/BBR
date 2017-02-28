@@ -12,8 +12,8 @@ window.app.page("homepage", function() // registering the controller
     //   // save contact (contactId) using current $firstName $lastName values
     // ));
 
-
-	$('.page-loader.home').show();
+var firstLoad = 1;
+	$('.page-loader').show();
 
 var filtersHome = $('#filters.home'),
 			sliderContainer = $('#sliderContainerHome');
@@ -72,15 +72,6 @@ window.app("photographypage", curenDataAtt)
 
 		});
 
-	$(document).ready( function(){  
-		// All images, css style sheets and external resources are loaded!
-	$('.page-loader.home').delay(3000).fadeOut('slow');
-    console.log("wind load");
-
- });
-
-
-			
 		worksgridHome.isotope({
 					layoutMode: 'masonry',
 					itemSelector: '.work-item.home',
@@ -88,11 +79,14 @@ window.app("photographypage", curenDataAtt)
 				});
 
 		$(window).on('resize', function() {
+			console.log("resize");
 			worksgridHome.imagesLoaded(function() {
+				
 				console.log("images loaded");
 				worksgridHome.isotope('reloadItems');
 				worksgridHome.isotope();
 				$('.filters.home .current').click();
+			$('.page-loader').delay(1000).fadeOut('slow');
 
 			});
 		});
@@ -107,7 +101,7 @@ window.app("photographypage", curenDataAtt)
 				var items = data;
 				var template = '{{#articles}}<article class="work-item home {{type}}"> ' +
 				'<div class="work-wrapper"><div class="work-thumbnail">'+
-				'	<img src="{{src}}" alt=""></div>'+
+				'	<img src="{{src}}" alt="image"></div>'+
 				'<div class="work-caption">'+
 				'<h3 class="work-title font-alt">{{type}}</h3>'+
 				'</div></div></article>{{/articles}}'
@@ -115,7 +109,8 @@ window.app("photographypage", curenDataAtt)
 				var html = Mustache.to_html(template, items);
 				$('#works-grid.home').html(html);
 
-				$(window).resize();
+				 $(window).resize();
+				 firstLoad++;
 				},
 
 				error: function (jqXHR, textStatus, errorThrown) {
@@ -176,7 +171,9 @@ window.app("photographypage", curenDataAtt)
 
 $(document).ready(function() {
 	
+	if(firstLoad >1 ){
 		$(window).resize();
+	}
 	
 $('#slides').superslides('start')
 		/* ---------------------------------------------- /*

@@ -1,7 +1,7 @@
 (function($){
 
 	$(document).ready(function() {
-	
+	$('.page-loader').show();
     // $(window).on('resize', function() {
 	// 				if (moduleHero.length > 0) {
 	// 			if (moduleHero.hasClass('js-fullheight')) {
