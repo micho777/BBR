@@ -248,14 +248,16 @@ blockquote cite{
 
 .loader{
 	position:absolute;
-	width:50px;
-	height:50px;
+	width:55px;
+	height:60px;
 	top:50%;
 	left:50%;
 	margin:-25px 0 0 -25px;
 	text-indent:-9999em;
 	background-color:transparent;
-	border:5px solid #ECEFF1;
+
+	/*border:5px solid #ECEFF1;*/
+	/*background-image: url(../images/favicon.png);*/
 	-webkit-border-radius:50%;
 	-moz-border-radius:50%;
 	-o-border-radius:50%;
@@ -267,20 +269,25 @@ blockquote cite{
 	content:"";
 	top:0px;
 	left:0px;
-	width:40px;
-	height:40px;
+	width:68px;
+	height:70px;
 	padding:2px;
-	border-width:2px;
+	
+	background-image: url(../images/apple-touch-icon.png);
+	border:5px solid #ECEFF1;
+	
+	/*border-width:2px;
 	border-style:solid;
-	border-color:#f6bf13 transparent transparent transparent;
+	border-color:#f6bf13 transparent transparent transparent;*/
+	
 	-webkit-border-radius:50%;
 	-moz-border-radius:50%;
 	-o-border-radius:50%;
 	border-radius:50%;
 	box-sizing:border-box;
 	-webkit-box-sizing:border-box;
-	animation:ringrotate .8s infinite cubic-bezier(0.5, 0.49, 0.49, 0.49);
-	-webkit-animation:ringrotate .8s infinite cubic-bezier(0.5, 0.49, 0.49, 0.49);
+	animation:ringrotate 1.5s infinite cubic-bezier(0.5, 0.49, 0.49, 0.49);
+	-webkit-animation:ringrotate 1.5s infinite cubic-bezier(0.5, 0.49, 0.49, 0.49);
 }
 
 @keyframes ringrotate{

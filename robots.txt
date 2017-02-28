@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /assets/data
+Disallow: /assets/php
+Disallow: /assets/images
+Sitemap: http://http://bashirbouraffoul.com/sitemap.txt​​​​​​​

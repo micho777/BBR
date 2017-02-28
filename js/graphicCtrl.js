@@ -15,6 +15,7 @@ window.app.page("graphicdesignpage", function() // registering the controller
 	/* ---------------------------------------------- /*
 		 * Full height module
 		/* ---------------------------------------------- */
+		$('.page-loader').show();
 
 	
  var filtersGD = $('#filters.gd'),
@@ -31,6 +32,9 @@ window.app.page("graphicdesignpage", function() // registering the controller
 			worksgridGD.imagesLoaded(function() {
 				worksgridGD.isotope('reloadItems');
 				worksgridGD.isotope();
+
+		$('.page-loader').delay(1000).fadeOut('slow');
+				
 			});
 		});
 
@@ -52,7 +56,7 @@ function ajaxLoadDefault() {
 				var items = data;
 				var template = '{{#articles}}<article class="work-item gd {{type}}"> ' +
 				'<div class="work-wrapper"><div class="work-thumbnail">'+
-				'	<img src="{{src}}" alt=""></div>'+
+				'	<img src="{{src}}" alt="img"></div>'+
 				'<div class="work-caption">'+
 				'<h3 class="work-title font-alt">{{type}}</h3>'+
 				'</div></div></article>{{/articles}}'
@@ -133,9 +137,7 @@ ajaxLoadDefault();
       // $lastName.val(contact.lastName);
       // ...
       window.scrollTo(0,0);
-		$('.page-loader').show();
       
-		$('.page-loader').delay(2000).fadeOut('slow');
 
 
     })
