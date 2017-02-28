@@ -2,16 +2,22 @@
 
 	$(document).ready(function() {
 	$('.page-loader').show();
-    // $(window).on('resize', function() {
-	// 				if (moduleHero.length > 0) {
-	// 			if (moduleHero.hasClass('js-fullheight')) {
-	// 				moduleHero.height($(window).height());
-	// 			} else {
-	// 				moduleHero.height($(window).height() * 0.65);
-	// 			}
-	// 		}
-    // });
 	
+	$(window).on("page.hidden",function(te, pe){
+		if(pe=="photographypage"){
+console.log("yes its photo page");
+		$(window).off("resize.pg");	
+	}
+	else if(pe=="homepage")
+	{
+console.log("yes its photo page");
+		$(window).off("resize.home");	
+
+	}
+	
+
+		console.log("current page hidden " + pe)
+	});
 
 })
 })(jQuery);

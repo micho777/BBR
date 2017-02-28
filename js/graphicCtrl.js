@@ -101,6 +101,7 @@ ajaxLoadDefault();
     return function() {
 
       $(document).ready(function() {
+				$(window).resize();
 
 		/* ---------------------------------------------- /*
 		 * Mobile detect

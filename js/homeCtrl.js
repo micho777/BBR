@@ -78,14 +78,14 @@ window.app("photographypage", curenDataAtt)
 					transitionDuration: '0.3s'
 				});
 
-		$(window).on('resize', function() {
-			console.log("resize");
+		$(window).on('resize.home', function() {
+			console.log("resize home");
 			worksgridHome.imagesLoaded(function() {
 				
-				console.log("images loaded");
+				console.log("images loaded home");
 				worksgridHome.isotope('reloadItems');
 				worksgridHome.isotope();
-				$('.filters.home .current').click();
+				// $('.filters.home .current').click();
 			$('.page-loader').delay(1000).fadeOut('slow');
 
 			});

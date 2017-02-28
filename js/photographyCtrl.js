@@ -18,6 +18,7 @@ window.app.page("photographypage", function() // registering the controller
 		/* ---------------------------------------------- */
 
 	
+
  var filtersPG = $('#filters.pg'),
 			worksgridPG = $('#works-grid.pg');
 
@@ -28,15 +29,7 @@ window.app.page("photographypage", function() // registering the controller
 					transitionDuration: '0.3s'
 				});
 
-		$(window).on('resize', function() {
-			worksgridPG.imagesLoaded(function() {
-				worksgridPG.isotope('reloadItems');
-				worksgridPG.isotope();
-
-		$('.page-loader').delay(1000).fadeOut('slow');
-				
-			});
-		});
+	
 
 
 	var modulesPG = $('.module-hero, .module, .module-sm, .module-xs, .sidebar');
@@ -129,7 +122,7 @@ ajaxLoadDefault();
 		/* ---------------------------------------------- */
 
 		var pageNumber = 0,
-			workNumberToload = 5;
+			workNumberToload = 6;
 
 		var doneText    = 'Done',
 			loadText    = 'More',
@@ -155,7 +148,7 @@ ajaxLoadDefault();
 
 		function ajaxLoad(workNumberToload, pageNumber) {
 			var $loadButtonpg = $('#show-more.pg');
-			var dataString = 'numPosts=' + workNumberToload + '&pageNumber=' + pageNumber;
+			// var dataString = 'numPosts=' + workNumberToload + '&pageNumber=' + pageNumber;
 
 			$.ajax({
 				type: 'GET',
@@ -181,14 +174,15 @@ ajaxLoadDefault();
 				// findClass += selectorFilter;
 				// }
 					// var $data = $(data);
-					// var start_index = (pageNumber - 1) * workNumberToload;
-					// var end_index = + start_index + workNumberToload;
+					var start_index = (pageNumber - 1) * workNumberToload;
+					var end_index = + start_index + workNumberToload;
 					var $jmoreHtml= $("<div class='morewarapper'> </div>");
 					 $jmoreHtml.append($moreHtml);
 
+					
 
-					if ($jmoreHtml.find(findClass)) {
-						var work =$jmoreHtml.find(findClass);
+					if ($jmoreHtml.find(findClass).slice(start_index).length) {
+						var work =$jmoreHtml.find(findClass).slice(start_index, end_index);
 						
 						
 						worksgridPG.append(work).isotope('appended', work).resize();
@@ -197,8 +191,8 @@ ajaxLoadDefault();
 							$loadButtonpg.text(loadText);
 						}, 300);
 					} 
-					
-						setTimeout(function() {
+					else	{
+							setTimeout(function() {
 							$loadButtonpg.text(doneText);
 						}, 300);
 
@@ -207,6 +201,7 @@ ajaxLoadDefault();
 								opacity: 0,
 							}).css('display', 'none');
 						}, 1500);
+					}
 					
 				},
 
@@ -227,6 +222,21 @@ ajaxLoadDefault();
     return function(params) {
 
       $(document).ready(function() {
+
+
+	$(window).on('resize.pg', function() {
+							console.log("images resize photo");
+
+			worksgridPG.imagesLoaded(function() {
+								console.log("images loaded photo");
+
+				worksgridPG.isotope('reloadItems');
+				worksgridPG.isotope();
+				
+		$('.page-loader').delay(1500).fadeOut('slow');
+				
+			});
+		});
 
 		checkFilter(params);
       
