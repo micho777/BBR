@@ -27,9 +27,11 @@ window.app.page("photographypage", function() // registering the controller
   					layoutMode: 'masonry',
 					itemSelector: '.work-item.pg',
 					transitionDuration: '0.3s'
+					
+					
 				});
 
-	
+
 
 
 	var modulesPG = $('.module-hero, .module, .module-sm, .module-xs, .sidebar');
@@ -38,8 +40,9 @@ window.app.page("photographypage", function() // registering the controller
 			mobileTest;
 
 
+
 	  function checkFilter(params){
-if(params=='moreclicked')
+		if(params=='moreclicked')
 		{
 
 		var filtersHome  = $('#filters.home');
@@ -47,7 +50,16 @@ if(params=='moreclicked')
 
 			//if more is clicked than filter the current view with it
 			$('.current', filtersPG).removeClass('current');
+			if (curenDataAtt != "*"){
+			}
+			else{
+				$(curenDataAtt+'PG').addClass('current');
+				
+				$('.filters.pg .allPG').click();
+			}
+
 			$(curenDataAtt+'PG').addClass('current');
+		
 			$(curenDataAtt+'PG').click();
 		}
 		else{
@@ -65,7 +77,7 @@ function ajaxLoadDefault() {
 				success: function(data) {
 					//var workGrid = document.getElementsByClassName("works-grid")[0];
 				var items = data;
-				var template = '{{#articles}}<article class="work-item pg {{type}}"> ' +
+				var template = '{{#articles}}<article class="work-item pg {{type}} style="display: none" ' +
 				'<div class="work-wrapper"><div class="work-thumbnail">'+
 				'	<img src="{{src}}" alt="image"></div>'+
 				'<div class="work-caption">'+
@@ -135,6 +147,7 @@ ajaxLoadDefault();
 
 		$('#show-more.pg').on('click', function() {
 			$(this).text(loadingText);
+			$(this).prop('disabled', true);
 
 			setTimeout(function() {
 				ajaxLoad(workNumberToload, pageNumber);
@@ -147,17 +160,27 @@ ajaxLoadDefault();
 
 
 		function ajaxLoad(workNumberToload, pageNumber) {
-			var $loadButtonpg = $('#show-more.pg');
+
+				var start_index = (pageNumber - 1) * workNumberToload;
+					var end_index = + start_index + workNumberToload;
+
 			// var dataString = 'numPosts=' + workNumberToload + '&pageNumber=' + pageNumber;
+			var $loadButtonpg = $('#show-more.pg');
 
 			$.ajax({
 				type: 'GET',
 				dataType: 'json',
 				url: 'assets/data/morepic.json',
 				success: function(data) {
-						var moreItems = data;
+					
+					if(data.articles[end_index])
+					{
+
+					data.articles = data.articles.slice(start_index,end_index);
+						
+					var moreItems = data;
 				
-				var template = '{{#articles}}<article class="work-item pg work-itempg {{type}}"> ' +
+				var template = '{{#articles}}<article class="work-item pg work-itempg {{type}}" style="display: none">' +
 				'<div class="work-wrapper"><div class="work-thumbnail">'+
 				'	<img src="{{src}}" alt="image"></div>'+
 				'<div class="work-caption">'+
@@ -174,25 +197,34 @@ ajaxLoadDefault();
 				// findClass += selectorFilter;
 				// }
 					// var $data = $(data);
-					var start_index = (pageNumber - 1) * workNumberToload;
-					var end_index = + start_index + workNumberToload;
+				
 					var $jmoreHtml= $("<div class='morewarapper'> </div>");
 					 $jmoreHtml.append($moreHtml);
 
-					
+					if ($jmoreHtml.find(findClass)) {
+						var work =$jmoreHtml.find(findClass);
 
-					if ($jmoreHtml.find(findClass).slice(start_index).length) {
-						var work =$jmoreHtml.find(findClass).slice(start_index, end_index);
-						
-						
-						worksgridPG.append(work).isotope('appended', work).resize();
+				worksgridPG.isotopeImagesReveal(work).imagesLoaded(function() {
 
-						setTimeout(function() {
+							$loadButtonpg.prop('disabled', false);
 							$loadButtonpg.text(loadText);
-						}, 300);
+						});
+
+
+						// worksgridPG.append(work);
+						// work.hide();
+						// worksgridPG.isotope('appended', work)
+
+						// setTimeout(function() {
+						// 	$loadButtonpg.prop('disabled', false);
+						// 	$loadButtonpg.text(loadText);
+						// }, 5000);
 					} 
-					else	{
+					
+				}
+				else	{
 							setTimeout(function() {
+							$loadButtonpg.prop('disabled', false);
 							$loadButtonpg.text(doneText);
 						}, 300);
 
@@ -217,6 +249,30 @@ ajaxLoadDefault();
 			});
 		};
 
+
+$.fn.isotopeImagesReveal = function( $items ) {
+  var iso = this.data('isotope');
+  var itemSelector = iso.options.itemSelector;
+  // hide by default
+  $items.hide();
+  // append to container
+  this.append( $items );
+  $items.imagesLoaded().progress( function( imgLoad, image ) {
+    // get item
+    // image is imagesLoaded class, not <img>, <img> is image.img
+    var $item = $( image.img ).parents( itemSelector );
+    // un-hide item
+    $item.show();
+    // isotope does its thing
+    iso.appended( $item );
+  });
+
+  return this;
+};
+
+
+
+
     // presenter of the view - load data and show: 
     // this function is "page activated" code - it gets called each time the page gets presented 
     return function(params) {
@@ -225,10 +281,8 @@ ajaxLoadDefault();
 
 
 	$(window).on('resize.pg', function() {
-							console.log("images resize photo");
 
 			worksgridPG.imagesLoaded(function() {
-								console.log("images loaded photo");
 
 				worksgridPG.isotope('reloadItems');
 				worksgridPG.isotope();

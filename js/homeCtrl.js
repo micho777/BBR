@@ -40,7 +40,6 @@ var worksgridHome = $('#works-grid.home');
 			e.preventDefault();
 		});
 
-//for the more button within the slider
 		$('a', filtersHome).on('click', function() {
 			var selector = $(this).attr('data-filter');
 			$('.current', filtersHome).removeClass('current');
@@ -51,8 +50,8 @@ var worksgridHome = $('#works-grid.home');
 			return false;
 		});
 
-
-	$('a', sliderContainer).on('click', function() {
+	//for the more button within the slider
+	$('a.current', sliderContainer).on('click', function() {
 			var selector = $(this).attr('data-filter');
 			$('.current', filtersHome).removeClass('current');
 			$(selector+'Home').addClass('current');
@@ -67,10 +66,9 @@ var worksgridHome = $('#works-grid.home');
 		/* ---------------------------------------------- /*
 		 * Scroll Animation
 		/* ---------------------------------------------- */
-		$('#moreHomeClicked').on('click',function(){
-window.app("photographypage", curenDataAtt)
-
-		});
+		// $('#moreHomeClicked').on('click',function(){
+		// 	window.app("photographypage", curenDataAtt)
+		// });
 
 		worksgridHome.isotope({
 					layoutMode: 'masonry',
@@ -78,18 +76,7 @@ window.app("photographypage", curenDataAtt)
 					transitionDuration: '0.3s'
 				});
 
-		$(window).on('resize.home', function() {
-			console.log("resize home");
-			worksgridHome.imagesLoaded(function() {
-				
-				console.log("images loaded home");
-				worksgridHome.isotope('reloadItems');
-				worksgridHome.isotope();
-				// $('.filters.home .current').click();
-			$('.page-loader').delay(1000).fadeOut('slow');
-
-			});
-		});
+	
 
 		function ajaxLoadDefault() {
 			$.ajax({
@@ -170,7 +157,21 @@ window.app("photographypage", curenDataAtt)
 //from Custom
 
 $(document).ready(function() {
-	
+
+		$(window).on('resize.home', function() {
+			console.log("resize home");
+			worksgridHome.imagesLoaded(function() {
+				
+				console.log("images loaded home");
+				worksgridHome.isotope('reloadItems');
+				worksgridHome.isotope();
+				 $('.filters.home .current').click();
+			$('.page-loader').delay(1000).fadeOut('slow');
+
+			});
+		});
+		
+	console.log(firstLoad);
 	if(firstLoad >1 ){
 		$(window).resize();
 	}
