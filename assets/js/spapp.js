@@ -48,7 +48,6 @@
 
     var src = $page.attr("src");
     if( src && $page.find(">:first-child").length == 0) { // it has src and is empty
-      console.log(src);
       $.get(src, "html")
           .done(function(html){$page.html(html); show(pageName,param); })
           .fail(function(){ alert("failed to get:" + src); });

@@ -2,7 +2,6 @@ window.app.page("aboutmepage", function() // registering the controller
   {
     // initialize view variables in localscope
     // this is "page ready" code - happens once per app life time.
-      console.log("about me one time");
 
     // var $firstName = $(this).find('[name="firstName"]');
     // var $lastName = $(this).find('[name="lastName"]');
@@ -23,7 +22,6 @@ window.app.page("aboutmepage", function() // registering the controller
       // $firstName.val(contact.firstName);
       // $lastName.val(contact.lastName);
       // ...
-      console.log("about me each time");
             window.scrollTo(0,0);
 
 		$('.page-loader.about').show();

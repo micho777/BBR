@@ -14,10 +14,8 @@ window.app.page("contactpage", function() // registering the controller
 
     // presenter of the view - load data and show: 
     // this function is "page activated" code - it gets called each time the page gets presented 
-console.log("before  init");
 
 	window.initMap = function(){
-console.log("map init");
 		/* ---------------------------------------------- /*
 		 * Google Map
 		/* ---------------------------------------------- */

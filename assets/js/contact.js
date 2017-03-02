@@ -11,7 +11,6 @@
 
  function onSuccess() {
         // remove this to avoid redirect
-        console.log("sucess");
 		$("input#name").val("");
 		$("input#email").val("");
 		$("textarea#message").val("");
@@ -25,7 +24,6 @@
 
     function onError(error) {
         // remove this to avoid redirect
-        console.log("failed" + error);
         sendButton.prop('disabled',false);
         sendButton.val('Submit');
 		
@@ -40,7 +38,6 @@ function send() {
 		alert("Please fill all inputs with valid data");
 		return false;
 	}	
-	console.log(sendButton);
         sendButton.val('Sending…');
         sendButton.prop('disabled',true);
 

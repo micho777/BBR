@@ -9,6 +9,11 @@ Primary use: Portfolio
 ------------------------------------------------------------------
 [General Styles]
 */
+html{
+	-webkit-text-size-adjust: none;
+	 overflow-x: hidden !important;
+	 overflow-y: scroll;
+}
 
 body{
 	background:#fff;
@@ -17,7 +22,9 @@ body{
 	font-size:12px;
 	color:#787878;
 	-ms-overflow-style:scrollbar;
-	overflow-x:hidden;
+	overflow-x: hidden !important;
+	 overflow-y: hidden;
+	
 }
 
 img{
@@ -244,24 +251,25 @@ blockquote cite{
 	right:0;
 	left:0;
 	z-index:9998;
+	overflow: hidden !important;
 }
 
 .loader{
 	position:absolute;
-	width:55px;
+	width:58px;
 	height:60px;
 	top:50%;
 	left:50%;
-	margin:-25px 0 0 -25px;
+	margin:-25px 0px 0 -25px;
 	text-indent:-9999em;
 	background-color:transparent;
 
 	/*border:5px solid #ECEFF1;*/
 	/*background-image: url(../images/favicon.png);*/
-	-webkit-border-radius:50%;
+	/*-webkit-border-radius:50%;
 	-moz-border-radius:50%;
 	-o-border-radius:50%;
-	border-radius:50%;
+	border-radius:50%;*/
 }
 
 .loader:after{
@@ -269,12 +277,12 @@ blockquote cite{
 	content:"";
 	top:0px;
 	left:0px;
-	width:68px;
-	height:70px;
+	width:58px;
+	height:60px;
 	padding:2px;
 	
 	background-image: url(../images/apple-touch-icon.png);
-	border:5px solid #ECEFF1;
+	/*border:5px solid #ECEFF1;*/
 	
 	/*border-width:2px;
 	border-style:solid;
@@ -439,7 +447,7 @@ blockquote cite{
 */
 
 .progress{
-	overflow:visible;
+	overflow-y:hidden;
 	height:4px;
 }
 
@@ -1692,6 +1700,18 @@ blockquote cite{
 	width:100%;
 }
 
+	.module-sm
+	{
+padding-left: 0px;
+padding-right: 0px;
+	}
+
+.container-fluid{
+	padding-left: 0px;
+    padding-right: 0px;
+}
+
+
 }
 /*!------------------------------------------------------------------
 [Portfolio Single]
@@ -1871,3 +1891,7 @@ body.graphicdesignpage .navbar-custom li > a#goToPhotography {  color:#f6bf13; }
  .portofoliogd.module-sm{
 	padding-top:0px !important;
 }
+
+.displaynone{
+	display:none;
+	}

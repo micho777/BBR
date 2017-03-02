@@ -51,12 +51,14 @@ window.app.page("photographypage", function() // registering the controller
 			//if more is clicked than filter the current view with it
 			$('.current', filtersPG).removeClass('current');
 			if (curenDataAtt != "*"){
+			$('#show-more').hide();
+
 			}
 			else{
 				$(curenDataAtt+'PG').addClass('current');
 				
 				$('.filters.pg .allPG').click();
-			}
+				}
 
 			$(curenDataAtt+'PG').addClass('current');
 		
@@ -111,6 +113,14 @@ ajaxLoadDefault();
 			worksgridPG.isotope({
 				filter: selector
 			});
+console.log($(this).hasClass('allPG'));
+if($(this).hasClass('allPG')){
+			$('#show-more').show();
+}
+else{
+	$('#show-more').hide();
+}
+			
 			return false;
 		});
 
@@ -238,7 +248,6 @@ ajaxLoadDefault();
 				},
 
 				error: function (jqXHR, textStatus, errorThrown) {
-					console.log(jqXHR + " :: " + textStatus + " :: " + errorThrown);
 
 					setTimeout(function() {
 						$loadButtonpg.removeClass('ss-loading');
@@ -279,6 +288,8 @@ $.fn.isotopeImagesReveal = function( $items ) {
 
       $(document).ready(function() {
 
+
+$('#show-more').hide();
 
 	$(window).on('resize.pg', function() {
 

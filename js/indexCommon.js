@@ -5,17 +5,22 @@
 	
 	$(window).on("page.hidden",function(te, pe){
 		if(pe=="photographypage"){
-	console.log("yes its photo page");
 		$(window).off("resize.pg");	
 	}
 	else if(pe=="homepage")
 	{
-console.log("yes its home page");
 		$(window).off("resize.home");	
 
 	}
-		console.log("current page hidden " + pe)
-	});
+});
+
+$(document).on('click','.navbar-collapse.in',function(e) {
+    if( $(e.target).is('a') && $(e.target).attr('class') != 'dropdown-toggle' ) {
+        $(this).collapse('hide');
+    }
+});
+
+
 
 })
 })(jQuery);

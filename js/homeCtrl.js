@@ -51,9 +51,12 @@ var worksgridHome = $('#works-grid.home');
 		});
 
 	//for the more button within the slider
-	$('a.current', sliderContainer).on('click', function() {
+	$('a.locally', sliderContainer).on('click', function() {
+		console.log("clicked");
 			var selector = $(this).attr('data-filter');
 			$('.current', filtersHome).removeClass('current');
+		console.log("selector");
+			
 			$(selector+'Home').addClass('current');
 			worksgridHome.isotope({
 				filter: selector
@@ -101,7 +104,6 @@ var worksgridHome = $('#works-grid.home');
 				},
 
 				error: function (jqXHR, textStatus, errorThrown) {
-					console.log(jqXHR + " :: " + textStatus + " :: " + errorThrown);
 
 					setTimeout(function() {
 						$loadButtonpg.removeClass('ss-loading');
@@ -159,10 +161,8 @@ var worksgridHome = $('#works-grid.home');
 $(document).ready(function() {
 
 		$(window).on('resize.home', function() {
-			console.log("resize home");
 			worksgridHome.imagesLoaded(function() {
 				
-				console.log("images loaded home");
 				worksgridHome.isotope('reloadItems');
 				worksgridHome.isotope();
 				 $('.filters.home .current').click();
@@ -171,7 +171,6 @@ $(document).ready(function() {
 			});
 		});
 		
-	console.log(firstLoad);
 	if(firstLoad >1 ){
 		$(window).resize();
 	}

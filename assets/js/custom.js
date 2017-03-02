@@ -335,7 +335,7 @@ function initMap(){
 				},
 
 				error: function (jqXHR, textStatus, errorThrown) {
-					console.log(jqXHR + " :: " + textStatus + " :: " + errorThrown);
+					// console.log(jqXHR + " :: " + textStatus + " :: " + errorThrown);
 
 					setTimeout(function() {
 						$loadButton.removeClass('ss-loading');
